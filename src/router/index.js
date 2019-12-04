@@ -24,17 +24,7 @@ export const constantRouterMap = [
       component: () => import('@/views/dashboard/index'),
       meta: { title: 'Dashboard', icon: 'dashboard' }
     }]
-  },
-  {
-    path: '',
-    component: Layout,
-    children: [{
-      path: '/form',
-      name: 'Form',
-      component: () => import('@/views/form/index'),
-      meta: { title: 'Form', icon: 'form' }
-    }]
-  },
+  }
 ]
 
 export const asyncRouterMap = [
@@ -109,8 +99,8 @@ const createRouter = () => new Router({
 const router = createRouter()
 
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+    const newRouter = createRouter()
+    router.matcher = newRouter.matcher // reset router
 }
 
 export default router

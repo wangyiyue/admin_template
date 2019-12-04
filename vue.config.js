@@ -25,14 +25,15 @@ module.exports = {
     },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        target: `http://192.168.9.10:7090`,
+        //target: `http://192.168.9.10:7090`,
+        target: `http://dev.zhiyesoft.com`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
+        },
+        ws: false
       }
     },
-    //after: require('./mock/mock-server.js')
   },
   configureWebpack: {
     name: name,

@@ -11,11 +11,6 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
-/*import { mockXHR } from '../mock'
-if (process.env.NODE_ENV === 'production') {
-  mockXHR()
-}*/
-
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

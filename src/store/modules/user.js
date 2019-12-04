@@ -42,23 +42,27 @@ const actions = {
   getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       //模拟
-      commit('SET_NAME', 'Admin');
+      commit('SET_NAME', '超级管理员');
       commit('SET_AVATAR', 'http://bhms-fru-dev.oss-cn-shenzhen.aliyuncs.com/farm/1572587608119.gif');
       resolve();
     });
   },
 
   // user logout
-  logout({ commit, state }) {
+  LogOut({ commit, state }) {
     return new Promise((resolve, reject) => {
-      logout(state.token).then(() => {
+      commit('SET_TOKEN', '')
+      removeToken()
+      resetRouter()
+      resolve()
+      /*logout(state.token).then(() => {
         commit('SET_TOKEN', '')
         removeToken()
         resetRouter()
         resolve()
       }).catch(error => {
         reject(error)
-      })
+      })*/
     })
   },
 

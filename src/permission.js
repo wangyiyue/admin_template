@@ -1,5 +1,6 @@
 import router from './router'
 import store from './store'
+import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
 
@@ -19,10 +20,10 @@ router.beforeEach(async(to, from, next) => {
           next(); //执行下一步
         })
       }).catch( () => {
-        /*store.dispatch('user/LogOut').then(() => {
+        store.dispatch('user/LogOut').then(() => {
             Message.error('验证失败,请重新登录');
             next({ path: '/login' });
-        });*/
+        });
       });
     }
   } else {
