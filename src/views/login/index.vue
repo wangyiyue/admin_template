@@ -146,7 +146,7 @@ $light_gray:#fff;
     width: 360px;
     max-width: 100%;
     overflow: hidden;
-    background: rgba(0,0,0, 0.5);
+    background: rgba(0,0,0, 0.2);
     border-radius: 10px;
   }
   .tips {

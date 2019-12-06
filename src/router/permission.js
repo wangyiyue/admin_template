@@ -1,15 +1,15 @@
-import router from './router'
-import store from './store'
+import router from './index'
+import store from '../store'
 import { Message } from 'element-ui'
-import { getToken } from '@/utils/auth' // get token from cookie
+import { getToken } from '@/utils/util' // 获取token
 import getPageTitle from '@/utils/get-page-title'
 
-const whiteList = ['/login'] // no redirect whitelist
+const whiteList = ['/login'] // 白名单
 
 router.beforeEach(async(to, from, next) => {
   // 设置页面标题
   document.title = getPageTitle(to.meta.title)
-  // token
+  // 如果有token
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })
@@ -27,7 +27,7 @@ router.beforeEach(async(to, from, next) => {
       });
     }
   } else {
-    /* has no token*/
+    /* 没有token */
     if (whiteList.indexOf(to.path) !== -1) {
       next()
     } else {

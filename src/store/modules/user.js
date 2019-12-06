@@ -1,6 +1,6 @@
 //import { login, logout, getInfo } from '@/api/user'
 import { login } from '@/api/login';
-import { getToken, setToken, removeToken } from '@/utils/auth'
+import { getToken, setToken, removeToken } from '@/utils/util'
 import { resetRouter } from '@/router'
 
 const state = {

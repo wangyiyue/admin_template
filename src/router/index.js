@@ -3,7 +3,7 @@ import Router from 'vue-router'
 Vue.use(Router)
 /* Layout */
 import Layout from '@/layout'
-
+const NotFound = () => import('@/views/404.vue');
 /**
  * constantRoutes
  * 不需要权限的数由
@@ -17,77 +17,24 @@ export const constantRouterMap = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/index',
     children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      path: 'index',
+      name: '首页',
+      component: () => import('@/views/index/index'),
+      meta: { title: '首页', icon: 'dashboard' }
     }]
   }
 ]
+// 未找到页面路由
+export const noFound = {
+  path: '*',
+  component: NotFound,
+  name: '404',
+  hidden: true
+};
 
-export const asyncRouterMap = [
-  /*{
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
-      }
-    ]
-  },*/
-  // 404 page must be placed at the end !!!
-  /*{ path: '*', redirect: '/404', hidden: true }*/
-]
+export const asyncRouterMap = [];
 
 //实例化vue的时候只挂载constantRouterMap
 const createRouter = () => new Router({
@@ -98,6 +45,7 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
+/* 重置路由*/
 export function resetRouter() {
     const newRouter = createRouter()
     router.matcher = newRouter.matcher // reset router

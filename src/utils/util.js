@@ -13,3 +13,11 @@ export function setToken(token) {
 export function removeToken() {
   return sessionStorage.removeItem(TokenKey)
 }
+
+/**
+ * @param {string} path
+ * @returns {Boolean}
+ */
+export function isExternal(path) {
+  return /^(https?:|mailto:|tel:)/.test(path)
+}

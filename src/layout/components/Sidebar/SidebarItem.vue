@@ -1,5 +1,6 @@
 <template>
   <div v-if="!item.hidden" class="menu-wrapper">
+    <!-- 如果只有一个-->
     <template v-if="hasOneShowingChild(item.children,item) && (!onlyOneChild.children||onlyOneChild.noShowingChildren)&&!item.alwaysShow">
       <app-link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)" :class="{'submenu-title-noDropdown':!isNest}">
@@ -26,7 +27,7 @@
 
 <script>
 import path from 'path'
-import { isExternal } from '@/utils/validate'
+import { isExternal } from '@/utils/util'
 import Item from './Item'
 import AppLink from './Link'
 import FixiOSBug from './FixiOSBug'
