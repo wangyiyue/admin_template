@@ -52,7 +52,6 @@ export default {
     }
   },
   data() {
-    // TODO: refactor with render function
     this.onlyOneChild = null
     return {}
   },

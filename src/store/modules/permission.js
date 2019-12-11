@@ -1,14 +1,19 @@
-import { asyncRouterMap, constantRouterMap } from '@/router'
+import { constantRouterMap,noFound } from '@/router/constantRouterMap'; //不需要权限
+import { asyncRouterMap } from '@/router/asyncRouterMap'; //需要权限
 import { getNavList } from '@/api/system';
 import Layout from '@/layout'
 
+/*
+* @过滤路由
+* */
 function filterAsyncRouter(menuList = [],routes = []) {
   menuList.forEach( element =>{
     let menu = {
       path:element.url ? element.url : '',
       icon:element.icon,
+      name: element.name,
       index:element.url? element.url : String(element.menuId),
-      component:!element.url ? Layout: resolve => require(["@/views" + data.url + ".vue"], resolve),
+      component:!element.url ? Layout: resolve => require(["@/views" + element.url + ".vue"], resolve),
       children: [],
       title: element.name,
       meta: { title: element.name,icon:element.icon }
@@ -40,6 +45,8 @@ const actions = {
         if(response.code == 0) {
           localStorage.setItem('menuList', JSON.stringify(response.menuList));
           accessedRouters = filterAsyncRouter(response.menuList);
+          accessedRouters.push(noFound);
+          console.log(accessedRouters)
           commit('SET_ROUTERS', accessedRouters);  //保存路由
           resolve();
         }else {

@@ -1,44 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 Vue.use(Router)
-/* Layout */
-import Layout from '@/layout'
-const NotFound = () => import('@/views/404.vue');
-/**
- * constantRoutes
- * 不需要权限的数由
- */
-export const constantRouterMap = [
-  {
-    path: '/login',
-    component: () => import('@/views/login/index'),
-    hidden: true
-  },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/index',
-    children: [{
-      path: 'index',
-      name: '首页',
-      component: () => import('@/views/index/index'),
-      meta: { title: '首页', icon: 'dashboard' }
-    }]
-  }
-]
-// 未找到页面路由
-export const noFound = {
-  path: '*',
-  component: NotFound,
-  name: '404',
-  hidden: true
-};
 
-export const asyncRouterMap = [];
+/**
+ *  这里的路由分为两种，constantRoutes(不需要权限) 和 asyncRoutes(需要权限)。
+ */
+import { constantRouterMap } from './constantRouterMap';
+
 
 //实例化vue的时候只挂载constantRouterMap
 const createRouter = () => new Router({
-  // mode: 'history', // require service support
+  mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })

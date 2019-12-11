@@ -50,7 +50,7 @@ export default {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;
-  fill: currentColor;
+  fill: currentColor; /* 此属性为更改svg颜色属性设置*/
   overflow: hidden;
 }
 
