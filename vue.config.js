@@ -25,8 +25,8 @@ module.exports = {
     },
     proxy: {
       [process.env.VUE_APP_BASE_API]: {
-        //target: `http://192.168.9.10:7090`,
         target: `http://dev.zhiyesoft.com`,
+        //target: `http://192.168.9.24:8080`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''

@@ -8,13 +8,10 @@
         <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">All rights reserved
-          <a style="color:#20a0ff" href="https://wallstreetcn.com" target="_blank">wallstreetcn</a>
-        </div>
+        <div class="bullshit__oops">温馨提示!</div>
         <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">Please check that the URL you entered is correct, or click the button below to return to the homepage.</div>
-        <a href="" class="bullshit__return-home">Back to home</a>
+        <div class="bullshit__info">请检查链接是否正确或者返回首页.</div>
+        <a href="javascript:;" class="bullshit__return-home" @click="goHome">返回首页</a>
       </div>
     </div>
   </div>
@@ -26,7 +23,13 @@ export default {
   name: 'Page404',
   computed: {
     message() {
-      return 'The webmaster said that you can not enter this page...'
+      return '管理员说：您不能进入到这个页面'
+    }
+  },
+  methods:{
+    /* 返回首页*/
+    goHome(){
+      this.$router.push({ path: '/' });
     }
   }
 }

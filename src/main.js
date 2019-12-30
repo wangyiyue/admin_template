@@ -3,7 +3,6 @@ import 'normalize.css/normalize.css' // 重置css
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss' // 全局css
-
 import App from './App'
 import store from './store'
 import router from './router'

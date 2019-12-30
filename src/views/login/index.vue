@@ -39,6 +39,23 @@
           <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
         </span>
       </el-form-item>
+      <!-- 验证码 -->
+      <el-form-item prop="captcha">
+        <span class="svg-container">
+          <svg-icon icon-class="c4" />
+        </span>
+        <el-input
+          ref="username"
+          v-model="loginForm.captcha"
+          placeholder="请输入验证码"
+          name="captcha"
+          type="text"
+          tabindex="3"
+          auto-complete="on"
+        />
+        <img :src="imgUrl" @click="captchaData" class="verification" alt="看不清楚？点击图片刷新!">
+        <span class="refresh" @click="captchaData" ><i class="el-icon-refresh"></i></span>
+      </el-form-item>
       <!-- 登录按钮 -->
       <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">{{ loginText }}</el-button>
     </el-form>
@@ -46,6 +63,8 @@
 </template>
 
 <script>
+  import axios from 'axios'
+  import { getCaptcha } from '@/api/login'
 export default {
   name: 'Login',
   data() {
@@ -54,8 +73,11 @@ export default {
       loginText: '登录',
       loginRules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+        //captcha: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
       },
+      imgUrl: "", //验证码URL
+      randomStr:'',
       loginForm: {
         username: '',
         password: '',
@@ -65,7 +87,26 @@ export default {
       redirect: undefined
     }
   },
+  created() {
+    this.captchaData();
+  },
   methods: {
+    /* 获取验证码接口*/
+    captchaData(){
+      axios.get(process.env.VUE_APP_BASE_API + '/art-gallery-admin/captcha.jpg',{
+        responseType: 'arraybuffer'
+      }).then(response => {
+        return 'data:image/png;base64,' + btoa(
+          new Uint8Array(response.data)
+            .reduce((data, byte) => data + String.fromCharCode(byte), '')
+        );
+      }).then( data => {
+        this.imgUrl = data
+      })
+    },
+    /**
+     * @description 密码切换明文||密文
+     */
     showPwd() {
       if (this.passwordType === 'password') {
         this.passwordType = ''
@@ -76,6 +117,9 @@ export default {
         this.$refs.password.focus()
       })
     },
+    /**
+     * @description 点击登录
+     */
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
@@ -173,10 +217,9 @@ $light_gray:#fff;
       color: $light_gray;
       margin: 0px auto 20px auto;
       text-align: center;
-      font-weight: bold;
     }
   }
-  .show-pwd {
+  .show-pwd,.refresh {
     position: absolute;
     right: 20px;
     top: 7px;
@@ -184,6 +227,25 @@ $light_gray:#fff;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+  /*.refresh {
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    font-size: 16px;
+    color: $dark_gray;
+    cursor: pointer;
+    user-select: none;
+  }*/
+  .verification {
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 100px;
+    height: 30px;
+    transform: translateY(-50%);
+    font-size: 12px;
+    line-height: 14px;
   }
 }
 </style>

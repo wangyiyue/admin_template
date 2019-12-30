@@ -21,7 +21,20 @@ export const constantRouterMap = [
       component: () => import('@/views/index/index'),
       meta: { title: '首页', icon: 'home' }
     }]
-  }
+  },
+  // {
+  //   path: '/sys',
+  //   icon:'',
+  //   component: Layout,
+  //   name:'系统管理',
+  //   index:'999',
+  //   children: [{
+  //     path: '/sys/user',
+  //     name: '用户管理',
+  //     component: () => import('@/views/sys/user/index'),
+  //     meta: { title: '用户管理', icon: 'home' }
+  //   }]
+  // },
 ]
 // 未找到页面路由
 export const noFound = {

@@ -26,11 +26,14 @@ const actions = {
   login({ commit }, userInfo) {
     return new Promise((resolve, reject) => {
       login(userInfo).then(response => {
-        //请求成功，设置token并将token保存
+        //请求成功
         if (response.code === 0) {
+
           commit('SET_TOKEN', response.token);
-          setToken(response.token);//登录成功后将token存储在session之中
+          setToken(response.token);//登录成功后将用户名存储在session之中
           resolve(response);
+        }else{
+          this.$message(res.msg);
         }
       }).catch(error => {
         reject(error);
@@ -42,7 +45,7 @@ const actions = {
   getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       //模拟
-      commit('SET_NAME', '超级管理员');
+      commit('SET_NAME', getToken());
       commit('SET_AVATAR', 'http://bhms-fru-dev.oss-cn-shenzhen.aliyuncs.com/farm/1572587608119.gif');
       resolve();
     });
@@ -55,14 +58,6 @@ const actions = {
       removeToken()
       resetRouter()
       resolve()
-      /*logout(state.token).then(() => {
-        commit('SET_TOKEN', '')
-        removeToken()
-        resetRouter()
-        resolve()
-      }).catch(error => {
-        reject(error)
-      })*/
     })
   },
 
