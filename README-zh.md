@@ -1,4 +1,4 @@
-# admin-template
+# template
 
 > 这是一个极简的 vue admin 管理后台。它只包含了 Element UI & axios & iconfont & permission control & lint，这些搭建后台必要的东西。
 
@@ -8,7 +8,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/wangyiyue/admin_template.git
+git clone https://github.com/wangyiyue/template.git
 
 # 进入项目目录
 cd admin-template
