@@ -93,7 +93,7 @@ export default {
   methods: {
     /* 获取验证码接口*/
     captchaData(){
-      axios.get(process.env.VUE_APP_BASE_API + '/art-gallery-admin/captcha.jpg',{
+      axios.get(process.env.VUE_APP_BASE_API + '/farm-admin-om/captcha.jpg',{
         responseType: 'arraybuffer'
       }).then(response => {
         return 'data:image/png;base64,' + btoa(

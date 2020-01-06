@@ -45,7 +45,7 @@ const actions = {
   getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       //模拟
-      commit('SET_NAME', getToken());
+      commit('SET_NAME', '超级管理员');
       commit('SET_AVATAR', 'http://bhms-fru-dev.oss-cn-shenzhen.aliyuncs.com/farm/1572587608119.gif');
       resolve();
     });
