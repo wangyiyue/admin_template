@@ -153,14 +153,17 @@ $cursor: #333;
 @supports (-webkit-mask: none) and (not (cater-color: $cursor)) {
   .login-container .el-input input {
     color: $cursor;
+    padding-left: 40px;
   }
 }
 /* reset element-ui css */
 .login-container {
   .el-input {
     display: inline-block;
-    height: 47px;
-    width: 87%;
+    width: 100%;
+  }
+  .el-form-item{
+    margin-bottom: 17px;
   }
 }
 </style>
@@ -177,7 +180,7 @@ $light_gray:#fff;
   overflow: hidden;
 
   .login-form {
-    padding: 20px;
+    padding: 15px;
     position: absolute;
     left:50%;
     top: 50%;
@@ -186,7 +189,7 @@ $light_gray:#fff;
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
     transform: translate(-50%,-50%);
-    width: 360px;
+    width: 300px;
     max-width: 100%;
     overflow: hidden;
     background: rgba(0,0,0, 0.2);
@@ -204,39 +207,35 @@ $light_gray:#fff;
   }
 
   .svg-container {
-    padding: 6px 20px 6px 15px;
-    color: $light_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
+    color: #666;
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    -webkit-transform: translate(-50%,-50%);
+    -moz-transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+    -o-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    z-index: 99;
   }
   .title-container {
     position: relative;
     .title {
-      font-size: 20px;
+      font-size: 18px;
       color: $light_gray;
-      margin: 0px auto 20px auto;
+      margin: 0px auto 5px auto;
       text-align: center;
     }
   }
   .show-pwd,.refresh {
     position: absolute;
     right: 20px;
-    top: 7px;
+    top: 2px;
     font-size: 16px;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
   }
-  /*.refresh {
-    position: absolute;
-    right: 10px;
-    top: 9px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }*/
   .verification {
     position: absolute;
     top: 50%;
